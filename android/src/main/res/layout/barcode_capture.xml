@@ -4,12 +4,11 @@
     android:id="@+id/topLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@android:color/transparent"
     android:keepScreenOn="true">
 
     <com.amolg.flutterbarcodescanner.camera.CameraSourcePreview
         android:id="@+id/preview"
-        android:layout_above="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -24,44 +23,24 @@
     <RelativeLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/black">
-
-        <ImageView
-            android:id="@+id/imgViewSwitchCamera"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:contentDescription="Switch camera"
-            android:src="@drawable/ic_switch_camera"
-            android:layout_alignParentStart="true" />
-
-        <ImageView
-            android:id="@+id/imgViewBarcodeCaptureUseFlash"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerInParent="true"
-            android:contentDescription="Flash button"
-            android:src="@drawable/ic_barcode_flash_off" />
+        android:layout_height="38dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="48dp"
+        android:background="@android:color/transparent">
 
         <Button
             android:id="@+id/btnBarcodeCaptureCancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:text="Cancel"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/button_circle"
+            android:text="X"
             android:textAllCaps="false"
-            android:textColor="@android:color/white" />
+            android:textColor="#8289A9" />
     </RelativeLayout>
 </RelativeLayout>

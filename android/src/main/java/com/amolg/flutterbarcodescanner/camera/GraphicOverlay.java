@@ -157,7 +157,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         super.onDraw(canvas);
 
         // draw transparent rect
-        int cornerRadius = 0;
+        int cornerRadius = 24;
         Paint eraser = new Paint();
         eraser.setAntiAlias(true);
         eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
