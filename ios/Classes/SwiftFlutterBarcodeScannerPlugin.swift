@@ -65,7 +65,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         if let buttonText = args["cancelButtonText"] as? String{
             SwiftFlutterBarcodeScannerPlugin.cancelButtonText = buttonText
         }else {
-            SwiftFlutterBarcodeScannerPlugin.cancelButtonText = "Cancel"
+            SwiftFlutterBarcodeScannerPlugin.cancelButtonText = "X"
         }
         if let flashStatus = args["isShowFlashIcon"] as? Bool{
             SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = flashStatus
@@ -216,7 +216,12 @@ class BarcodeScannerViewController: UIViewController {
     /// Create and return cancel button
     public lazy var cancelButton: UIButton! = {
         let view = UIButton()
+        view.backgroundColor = .clear
+        view.layer.cornerRadius = 16
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.white.cgColor
         view.setTitle(SwiftFlutterBarcodeScannerPlugin.cancelButtonText, for: .normal)
+        view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(BarcodeScannerViewController.cancelButtonClicked), for: .touchUpInside)
         return view
@@ -359,32 +364,13 @@ class BarcodeScannerViewController: UIViewController {
     
     /// Apply constraints to ui components
     private func setConstraintsForControls() {
-        self.view.addSubview(bottomView)
         self.view.addSubview(cancelButton)
-        self.view.addSubview(flashIcon)
-        self.view.addSubview(switchCameraButton)
-        
-        bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:0).isActive = true
-        bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:0).isActive = true
-        bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:0).isActive = true
-        bottomView.heightAnchor.constraint(equalToConstant:self.isOrientationPortrait ? 100.0 : 70.0).isActive=true
-        
-        flashIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        flashIcon.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
-        flashIcon.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
-        flashIcon.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.widthAnchor.constraint(equalToConstant: 100.0).isActive = true
-        cancelButton.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
-        cancelButton.bottomAnchor.constraint(equalTo:view.bottomAnchor,constant: 0).isActive=true
-        cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:10).isActive = true
-        
-        switchCameraButton.translatesAutoresizingMaskIntoConstraints = false
-        // A little bit to the right.
-        switchCameraButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        switchCameraButton.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
-        switchCameraButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        cancelButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 38.0).isActive = true
+        cancelButton.heightAnchor.constraint(equalToConstant: 38.0).isActive = true
+        cancelButton.topAnchor.constraint(equalTo:view.topAnchor,constant: 60).isActive=true
+        cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:-20).isActive = true
     }
     
     /// Flash button click event listener
