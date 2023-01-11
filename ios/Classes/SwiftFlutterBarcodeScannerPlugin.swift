@@ -65,7 +65,7 @@ public class SwiftFlutterBarcodeScannerPlugin: NSObject, FlutterPlugin, ScanBarc
         if let buttonText = args["cancelButtonText"] as? String{
             SwiftFlutterBarcodeScannerPlugin.cancelButtonText = buttonText
         }else {
-            SwiftFlutterBarcodeScannerPlugin.cancelButtonText = "Cancel"
+            SwiftFlutterBarcodeScannerPlugin.cancelButtonText = "X"
         }
         if let flashStatus = args["isShowFlashIcon"] as? Bool{
             SwiftFlutterBarcodeScannerPlugin.isShowFlashIcon = flashStatus
@@ -221,6 +221,7 @@ class BarcodeScannerViewController: UIViewController {
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.white.cgColor
         view.setTitle(SwiftFlutterBarcodeScannerPlugin.cancelButtonText, for: .normal)
+        view.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addTarget(self, action: #selector(BarcodeScannerViewController.cancelButtonClicked), for: .touchUpInside)
         return view
@@ -366,7 +367,7 @@ class BarcodeScannerViewController: UIViewController {
         self.view.addSubview(cancelButton)
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.widthAnchor.constraint(equalToConstant: 38.0).isActive = true
+        cancelButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 38.0).isActive = true
         cancelButton.heightAnchor.constraint(equalToConstant: 38.0).isActive = true
         cancelButton.topAnchor.constraint(equalTo:view.topAnchor,constant: 60).isActive=true
         cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:-20).isActive = true
